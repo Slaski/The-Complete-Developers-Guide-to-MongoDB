@@ -5,7 +5,7 @@ describe('Updating records', () => {
   let joe;
 
   beforeEach(done => {
-    joe = new User({ name: 'Joe', postCount: 0 });
+    joe = new User({ name: 'Joe', likes: 0 });
     joe.save().then(() => {
       done();
     });
@@ -42,12 +42,12 @@ describe('Updating records', () => {
   });
 
   it('user can have their postCount incremented by one', done => {
-    User.update({ name: 'Joe' }, { $inc: { postCount: 1 } })
+    User.update({ name: 'Joe' }, { $inc: { likes: 1 } })
       .then(() => User.find({}))
       .then(users => {
         assert(users.length === 1);
         assert(users[0]._id.toHexString() === joe._id.toHexString());
-        assert(users[0].postCount === 1);
+        assert(users[0].likes === 1);
         done();
       });
   });
