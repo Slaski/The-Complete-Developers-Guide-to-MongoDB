@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const PostSchema = require('./post');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -9,7 +10,8 @@ const UserSchema = new mongoose.Schema({
             message: 'Name must be longer than 2 characters.'
         }
     },
-    postCount: Number
+    postCount: Number,
+    posts: [PostSchema]
 });
 
 const User = mongoose.model('user', UserSchema);
