@@ -5,9 +5,11 @@ module.exports = {
     res.send({ hi: 'there' });
   },
 
-  create(req, res) {
-    Driver.create(req.body).then(driver => {
-      res.send(driver);
-    });
+  create(req, res, next) {
+    Driver.create(req.body)
+      .then(driver => {
+        res.send(driver);
+      })
+      .catch(next);
   }
 };
